@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CodeZing Resume Builder</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;font-family:Poppins}
+body{
+  margin:0;
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  color:white;
+}
+.container{
+  display:flex;
+  min-height:100vh;
+}
+.form{
+  width:40%;
+  padding:30px;
+  overflow-y:auto;
+  background:rgba(0,0,0,0.4);
+}
+.form h2{margin-bottom:10px}
+.form input,.form textarea{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border:none;
+  border-radius:8px;
+}
+.form button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#00e5ff;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.preview{
+  width:60%;
+  padding:40px;
+  background:white;
+  color:black;
+}
+.resume{
+  max-width:800px;
+  margin:auto;
+}
+.header{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+.header img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  object-fit:cover;
+}
+h1{margin:0}
+.section{margin-top:20px}
+.section h3{
+  border-bottom:2px solid #00bcd4;
+  padding-bottom:4px;
+}
+.download{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  padding:15px 25px;
+  background:#00e5ff;
+  color:black;
+  border:none;
+  border-radius:50px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<!-- FORM -->
+<div class="form">
+  <h2>Resume Details</h2>
+
+  <input placeholder="Full Name" oninput="name.innerText=this.value">
+  <input placeholder="Role / Title" oninput="role.innerText=this.value">
+  <input placeholder="Email" oninput="email.innerText=this.value">
+  <input placeholder="Phone" oninput="phone.innerText=this.value">
+  <input placeholder="Profile Image URL" oninput="photo.src=this.value">
+
+  <textarea rows="3" placeholder="Summary" oninput="summary.innerText=this.value"></textarea>
+  <textarea rows="4" placeholder="Skills (comma separated)" oninput="skills.innerText=this.value"></textarea>
+  <textarea rows="4" placeholder="Experience" oninput="exp.innerText=this.value"></textarea>
+  <textarea rows="4" placeholder="Education" oninput="edu.innerText=this.value"></textarea>
+</div>
+
+<!-- PREVIEW -->
+<div class="preview" id="resume">
+  <div class="resume">
+    <div class="header">
+      <img id="photo" src="https://via.placeholder.com/150">
+      <div>
+        <h1 id="name">Your Name</h1>
+        <p id="role">Your Role</p>
+        <p id="email">email@example.com</p>
+        <p id="phone">+91 XXXXXXXX</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Summary</h3>
+      <p id="summary">Write about yourself...</p>
+    </div>
+
+    <div class="section">
+      <h3>Skills</h3>
+      <p id="skills">HTML, CSS, JS</p>
+    </div>
+
+    <div class="section">
+      <h3>Experience</h3>
+      <p id="exp">Your work experience</p>
+    </div>
+
+    <div class="section">
+      <h3>Education</h3>
+      <p id="edu">Your education</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<button class="download" onclick="download()">Download PDF</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+function download(){
+  html2pdf().from(document.getElementById("resume")).save("resume.pdf");
+}
+</script>
+</body>
+</html>
